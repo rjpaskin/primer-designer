@@ -1,0 +1,45 @@
+/* Rasmol amino/shapely colors */
+.rasmol .asp,
+.rasmol .glu {
+  color: #E60A0A;
+}
+.rasmol .cys,
+.rasmol .met {
+  color: #E6E600;
+}
+.rasmol .arg,
+.rasmol .lys {
+  color: #145AFF;
+}
+.rasmol .ser,
+.rasmol .thr {
+  color: #FA9600;
+}
+.rasmol .phe,
+.rasmol .tyr {
+  color: #3232AA;
+}
+.rasmol .asn,
+.rasmol .gln {
+  color: #00DCDC;
+}
+.rasmol .gly {
+  color: #EBEBEB;
+}
+.rasmol .leu,
+.rasmol .val,
+.rasmol .ile {
+  color: #0F820F;
+}
+.rasmol .ala {
+  color: #C8C8C8;
+}
+.rasmol .trp {
+  color: #B45AB4;
+}
+.rasmol .his {
+  color: #8282D2;
+}
+.rasmol .pro {
+  color: #DC9682;
+}
