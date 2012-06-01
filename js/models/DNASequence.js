@@ -12,7 +12,7 @@
     
     var str = this.seq.split('');
     
-    for (var i = 0; i <= this.seq.length; i++) {
+    for (var i = 0, l = this.seq.length; i <= l; i++) {
       if (bases[str[i]] != undefined) {
         output += bases[str[i]];
       }
@@ -23,7 +23,7 @@
   
   p.translate = function() {
     var protein = "";
-    for (var i = 0; i + 2 < this.seq.length; i += 3) {
+    for (var i = 0, l = this.seq.length; i + 2 < l; i += 3) {
       protein += this.translateCodon(this.seq[i], this.seq[i+1], this.seq[i+2]);
     }
     return new PD.ProteinSequence(protein);
