@@ -31,45 +31,11 @@
   
   <script type="text/javascript" src="js/template.js"></script>
   <script type="text/javascript" src="js/setup.js"></script>
+  <script type="text/javascript" src="js/seq_demo.js"></script>
   <script type="text/javascript" src="js/tags.js"></script>
+  <script type="text/javascript" src="js/protein_properties.js"></script>
   <!--<script type="text/javascript" src="js/ronn.js"></script>-->
-  <script type="text/javascript">
-    $(function() {    
-      // pLeics-14 Tag
-      var _seq = 'ATGTCCCCTATACTAGGTTATTGGAAAATTAAGGGCCTTGTGCAACCCACTCGACTTCTTTTGGAATATCTTGAAGAAAAATATGAAGAGCATTTGTATG\
-                  AGCGCGATGAAGGTGATAAATGGCGAAACAAAAAGTTTGAATTGGGTTTGGAGTTTCCCAATCTTCCTTATTATATTGATGGTGATGTTAAATTAACACA\
-                  GTCTATGGCCATCATACGTTATATAGCTGACAAGCACAACATGTTGGGTGGTTGTCCAAAAGAGCGTGCAGAGATTTCAATGCTTGAAGGAGCGGTTTTG\
-                  GATATTAGATACGGTGTTTCGAGAATTGCATATAGTAAAGACTTTGAAACTCTCAAAGTTGATTTTCTTAGCAAGCTACCTGAAATGCTGAAAATGTTCG\
-                  AAGATCGTTTATGTCATAAAACATATTTAAATGGTGATCATGTAACCCATCCTGACTTCATGTTGTATGACGCTCTTGATGTTGTTTTATACATGGACCC\
-                  AATGTGCCTGGATGCGTTCCCAAAATTAGTTTGTTTTAAAAAACGTATTGAAGCTATCCCACAAATTGATAAGTACTTGAAATCCAGCAAGTATATAGCA\
-                  TGGCCTTTGCAGGGCTGGCAAGCCACGTTTGGTGGTGGCGACCATCCTCCAAAATCGGATCTGGTTCCGCGTGGATCCGAAAACCTGTATTTTCAGGGCG\
-                  CC';
-      PD.MySequence = new PD.SequenceSet(_seq);
-      // AA composition
-      var seq = $('#id-seq').html().split('');
 
-      for (var s in seq) {
-        var info = PD.ProteinSequence.prototype.aa[seq[s]];
-        if (info != undefined) {
-          seq[s] = '<span class="' + info.sym.toLowerCase() + '">' + seq[s] + '</span>';
-        }
-      }
-      //var hi = $('#id-seq').html().replace(/S/gi, '<span style="color: #fc0">S</span>');
-      $('#id-seq').html(seq.join('')).addClass('rasmol');
-      
-      $.each(PD.ProteinSequence.prototype.aa, function(name, info) {
-        $('.aa-composition').append('<tr><td class="' + info.sym.toLowerCase() + '">' + info.sym + '</td><td>' 
-        + PD.MySequence.protein.count(name) + '</td><td>' 
-        + (PD.MySequence.protein.count(name)/PD.MySequence.protein.length * 100).toFixed(1) + '%</td></tr>');
-      });
-      $('.aa-composition').addClass('rasmol');
-      
-      
-      $('#seq-tabs').tabs();
-           
-      //PD.ronn.post(PD.MySequence.protein.slice(20,200).toFasta('prot 20-100'));
-    });  
-  </script>
   <style type="text/css" id="styles"></style>
 </head>
 <body>

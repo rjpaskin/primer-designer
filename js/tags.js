@@ -1,3 +1,24 @@
+PD.translate_tag = function(tag, formatted) {
+  if (formatted == undefined) { formatted = false }
+  var cmpnts = tag.split('-'),
+      str = '';
+  
+  for (var i in cmpnts) {
+    var key = cmpnts[i].replace(/[\{\}]/g, '').split('*'),
+        multiplier = ((key.length > 1) ? parseInt(key[1]) : 1),
+        arr = new Array(multiplier + 1);
+   
+    if (PD.settings.tags[key[0]] != undefined) {
+      str += '-' + arr.join(PD.settings.tags[key[0]]);
+    }
+    else {
+      str += '-' + arr.join(key[0]);
+    }
+  }
+    
+  return new PD.ProteinSequence(str);
+}
+
 $(function() {
   // #SERVER-SIDE
   function setup_tag_styles() {
