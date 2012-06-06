@@ -12,7 +12,7 @@ PD.apply_slider = function(ele) {
     slide: function(event, ui) {
       // Enforce mimimum size for constructs
       var min_len = PD.settings.min_construct_length;
-      if (ui.values[1] - ui.values[0] <= min_len) { return false }
+      if (ui.values[1] - ui.values[0] <= min_len) { return false; }
             
       data.setStart(ui.values[0] + 1);
       data.setEnd(ui.values[1]);
@@ -34,11 +34,11 @@ PD.apply_slider = function(ele) {
     }
   });
   $(ele).find('.slider').trigger('slide');
-}
+};
 
 PD.create_primer = function(start, end) {
-  if (typeof start == 'undefined') { start = 1 }
-  if (typeof end == 'undefined') { end = PD.MySequence.protein.length }
+  if (typeof start === 'undefined') { start = 1; }
+  if (typeof end === 'undefined') { end = PD.MySequence.protein.length; }
   
   var data = new PD.PrimerSet(start, end);
   var tmpl_data = {
@@ -57,50 +57,50 @@ PD.create_primer = function(start, end) {
   PD.apply_slider(primer);
 
   return primer;
-}
+};
 
 PD.renumber_primers = function() {
   $("#primers .primer").each(function() {
     var el = $(this);
     el.find(".num").html(el.index() + 1);
   });
-}
+};
 
 PD.highlightAll = function(start,end) {
   $.each(['protein', 'dna', 'complement'], function(i,seq) {
-    var factor = (seq != 'protein') ? 3 : 1;
+    var factor = (seq !== 'protein') ? 3 : 1;
     $('#'+seq).html(PD.MySequence[seq].highlight(
       (start - 1) * factor, end * factor
     ));
   });
-}
+};
 
 PD.parseFasta = function(fasta) {
   var name = fasta.match(/^>(.+)$/m);
   return {
     name: name !== null ? name[1].trim() : '',
-    seq:  fasta.replace(/^>.+$|[^ATCG]/gim, ''),
-  }
-}
+    seq:  fasta.replace(/^>.+$|[^ATCG]/gim, '')
+  };
+};
 
-})();
+}());
 
 /** Setup on DOM load **/
 $(function() {
    // #DEBUG: Quick loading of particular panel from address hash
    PD.screens = ['#new-sequence', '#sequences', '#info-panel' /*, '#ronn'*/];
-   if (location.hash != '' && PD.screens.indexOf(location.hash) != -1) {
+   if (location.hash !== '' && PD.screens.indexOf(location.hash) !== -1) {
      $(PD.screens.join(',')).hide();
      $(location.hash).show();
    }
       
-  // Setup sortable primers  
+  // Setup sortable primers
   $("#primers").sortable({
     items:     '.primer',
     handle:    '.header',
     axis:      'y',
     tolerance: 'pointer',
-    update:    PD.renumber_primers,
+    update:    PD.renumber_primers
   });
   
   $("#primers .primer").first().addClass("selected");
@@ -110,7 +110,7 @@ $(function() {
         icon = el.attr('data-icon');
     el.button({
       icons: {
-         primary: icon,
+         primary: icon
       }
     });
   });
@@ -121,7 +121,7 @@ $(function() {
     width:     '60%',
     draggable: false,
     autoOpen:  false,
-    title:     'Export',
+    title:     'Export'
   });
   
   // Form
@@ -198,7 +198,7 @@ $(function() {
       case 'add-primer':
         PD.create_primer();
 
-        if ($("#primers .primer").length == 1) {
+        if ($("#primers .primer").length === 1) {
           $("#primers .primer").first().trigger('click');
         }
       break;
@@ -213,7 +213,7 @@ $(function() {
       case 'export':
         var values  = [],
             primers = $("#primers .primer");
-        if (primers.length == 0) { return false } // nothing to export
+        if (primers.length === 0) { return false; } // nothing to export
     
         primers.each(function(index) {
           var name = $("input#default-name").val(),
@@ -233,7 +233,7 @@ $(function() {
       case 'screens':
         var next = PD.screens.indexOf('#' + $('.sequences-wrapper > *:visible').get(0).id) + 1;
             
-        if (next > PD.screens.length - 1) { next = 0 }
+        if (next > PD.screens.length - 1) { next = 0; }
         $(PD.screens.join(',')).hide();
         $(PD.screens[next]).show();
       break;
@@ -246,7 +246,7 @@ $(function() {
     var height = $(".display-settings input:checkbox:checked").length * 100 + 100;
     $("#sequences").css('line-height', height + "%");
     
-    if ($("#sequences div:visible").length == 1 && $("#protein:visible").length == 1) {
+    if ($("#sequences div:visible").length === 1 && $("#protein:visible").length === 1) {
       $("#protein").css('letter-spacing', '0');
     }
     else {
@@ -272,8 +272,8 @@ $(function() {
   .on('click', ".delete", function() {
     var deleted = $(this).parents(".primer");
     // if currently selected
-    if (deleted.attr('class').search(/selected/) != -1) {
-      if (deleted.prev('.primer').click().addClass("selected").length == 0) {
+    if (deleted.attr('class').search(/selected/) !== -1) {
+      if (deleted.prev('.primer').click().addClass("selected").length === 0) {
         deleted.next('.primer').click().addClass("selected");
       }
     }
@@ -281,7 +281,7 @@ $(function() {
     PD.renumber_primers();
     
     // No primers left
-    if ($('.primer').length == 0) {
+    if ($('.primer').length === 0) {
       $('#sequences').trigger('sequenceChanged');
     }
     return false;
