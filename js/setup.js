@@ -109,9 +109,9 @@ PD.parseFasta = function(fasta) {
 /** Setup on DOM load **/
 $(function() {
    // #DEBUG: Quick loading of particular panel from address hash
-   var screens = ['#new-sequence', '#sequences', '#info-panel', '#ronn'];
-   if (location.hash != '' && screens.indexOf(location.hash) != -1) {
-     $(screens.join(',')).hide();
+   PD.screens = ['#new-sequence', '#sequences', '#info-panel' /*, '#ronn'*/];
+   if (location.hash != '' && PD.screens.indexOf(location.hash) != -1) {
+     $(PD.screens.join(',')).hide();
      $(location.hash).show();
    }
       
@@ -252,12 +252,11 @@ $(function() {
       
       // #DEBUG: toggle between different screens
       case 'screens':
-        var screens = ['#new-sequence', '#sequences', '#info-panel', '#ronn'],
-            next    = screens.indexOf('#' + $('.sequences-wrapper > *:visible').get(0).id) + 1;
+        var next = PD.screens.indexOf('#' + $('.sequences-wrapper > *:visible').get(0).id) + 1;
             
-        if (next > screens.length - 1) { next = 0 }
-        $(screens.join(',')).hide();
-        $(screens[next]).show();
+        if (next > PD.screens.length - 1) { next = 0 }
+        $(PD.screens.join(',')).hide();
+        $(PD.screens[next]).show();
       break;
     }
   });

@@ -10,7 +10,7 @@
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
   <script type="text/javascript">
     var PD = {};
     PD.extend = function(base, ext) {
@@ -32,7 +32,7 @@
   <script type="text/javascript" src="js/template.js"></script>
   <script type="text/javascript" src="js/setup.js"></script>
   <script type="text/javascript" src="js/tags.js"></script>
-  <script type="text/javascript" src="js/ronn.js"></script>
+  <!--<script type="text/javascript" src="js/ronn.js"></script>-->
   <script type="text/javascript">
     $(function() {    
       // pLeics-14 Tag
@@ -67,7 +67,7 @@
       
       $('#seq-tabs').tabs();
            
-      PD.ronn.post(PD.MySequence.protein.slice(20,200).toFasta('prot 20-100'));
+      //PD.ronn.post(PD.MySequence.protein.slice(20,200).toFasta('prot 20-100'));
     });  
   </script>
   <style type="text/css" id="styles"></style>
@@ -138,14 +138,14 @@
     </div>
   </div>
   
-  <div id="ronn" class="panel" style="display:none">
+  <!--<div id="ronn" class="panel" style="display:none">
     <div id="ronn-ranges">Disordered residues: </div>
     <pre></pre>
     <div id="ronn_dashboard">
       <div id="ronn_chart"></div>
       <div id="ronn_controls"></div>
     </div>
-  </div>
+  </div>-->
 </div>
 
 <div class="info-wrapper">
