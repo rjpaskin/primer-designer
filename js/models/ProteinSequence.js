@@ -2,7 +2,7 @@
 (function() {
   PD.ProteinSequence = function(seq) {
     PD.Sequence.call(this, seq, 'FLSY\*CWPHQRIMTNKVADEG\?');
-  }
+  };
   
   var p = PD.extend(PD.Sequence, PD.ProteinSequence);
   
@@ -28,8 +28,8 @@
     T: { sym: 'Thr', name: 'Threonine',     mw: 101.1051 },
     W: { sym: 'Trp', name: 'Tryptophan',    mw: 186.2132 },
     Y: { sym: 'Tyr', name: 'Tyrosine',      mw: 163.1760 },
-    V: { sym: 'Val', name: 'Valine',        mw:  99.1326 },
-  }
+    V: { sym: 'Val', name: 'Valine',        mw:  99.1326 }
+  };
   
   p.calcMW = function() {
     var sum = 0,
@@ -43,17 +43,17 @@
     sum += 18.015;
     
     return sum.toFixed(2);
-  }
+  };
   
   // Extinction coefficient at 280 nm
   p.calcExtCoeff = function(mode) {
-    if (typeof mode == 'undefined') { mode = 'red' }
+    if (typeof mode == 'undefined') { mode = 'red'; }
     // Values from http://web.expasy.org/tools/protparam/protparam-doc.html
     var values = {
       Y: 1490,
-      W: 5500,
+      W: 5500
       //C: 125, // cystine
-    }
+    };
     
     var seq = this,
       coeff = 0;
@@ -67,5 +67,5 @@
       coeff += Math.floor(seq.count('C') / 2) * values.C; // add on cystine value
     }
     return '&epsilon;<sub>280</sub> = ' + coeff + ' M<sup>-1</sup>&nbsp;cm<sup>-1</sup>';
-  }
-})();
+  };
+}());

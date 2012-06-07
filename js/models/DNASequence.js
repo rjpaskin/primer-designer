@@ -2,7 +2,7 @@
 (function() {
   PD.DNASequence = function(seq) {
     PD.Sequence.call(this, seq, 'ATCG');
-  }
+  };
   
   var p = PD.extend(PD.Sequence, PD.DNASequence);
   
@@ -19,7 +19,7 @@
     }
        
     return new this.constructor(output);
-  }
+  };
   
   p.translate = function() {
     var protein = "";
@@ -27,7 +27,7 @@
       protein += this.translateCodon(this.seq[i], this.seq[i+1], this.seq[i+2]);
     }
     return new PD.ProteinSequence(protein);
-  }
+  };
     
   p.translateCodon = function(b1, b2, b3) {
     // Private sub-function
@@ -40,7 +40,7 @@
         case 'G': return 3;
         default: return -1;
       }
-    }
+    };
     var base1 = base2index(b1),
         base2 = base2index(b2),
         base3 = base2index(b3);
@@ -51,7 +51,7 @@
     else {
       return PD.GeneticCode.STANDARD.ncbiString[base1 * 16 + base2 * 4 + base3];
     }
-  }
+  };
   
   p.highlight = function(start, end) {
     var region = this.seq.slice(start, end),
@@ -64,5 +64,5 @@
       + '<span class="c-homology">' + region.substr(region.length - len) + '</span>'
     + '</span>'
     + '<span class="unselected">' + this.seq.substr(end)  + '</span>';
-  }
-})();
+  };
+}());

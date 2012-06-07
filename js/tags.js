@@ -1,5 +1,5 @@
 PD.translate_tag = function(tag, formatted) {
-  if (formatted == undefined) { formatted = false }
+  if (formatted == undefined) { formatted = false; }
   var cmpnts = tag.split('-'),
       str = '';
   
@@ -17,16 +17,16 @@ PD.translate_tag = function(tag, formatted) {
   }
     
   return new PD.ProteinSequence(str);
-}
+};
 
 $(function() {
   // #SERVER-SIDE
   function setup_tag_styles() {
-	var str = '', 
-	kelly_col = ['#DFCC52', '#5F2774', '#C26435', '#9CC7D6', '#A01F39', 
-				   '#B6B881', '#767976', '#62A04B', '#C27AA2', '#4C6B9E',
-				   '#C87D63', '#3E2D7C', '#CF9C41', '#7C2177', '#E1E965',
-				   '#611B1F', '#8AA844', '#583220', '#B52C30', '#26311E'],
+	var str = '',
+	kelly_col = ['#DFCC52', '#5F2774', '#C26435', '#9CC7D6', '#A01F39',
+                 '#B6B881', '#767976', '#62A04B', '#C27AA2', '#4C6B9E',
+                 '#C87D63', '#3E2D7C', '#CF9C41', '#7C2177', '#E1E965',
+                 '#611B1F', '#8AA844', '#583220', '#B52C30', '#26311E'],
 	// get rgb for hex: parseInt(h.substring(0,2),16), parseInt(h.substring(2,4),16), parseInt(h.substring(4,6),16)
 	num = 0;
 	
@@ -57,7 +57,7 @@ $(function() {
         arr = [];
     for (var n in cmpnts) {
       var key = cmpnts[n].replace(/[\{\}]/g, '').split('*'),
-          extra = ''
+          extra = '';
       
       if (PD.settings.tags[key[0]] != undefined) {
         if (key[1] != undefined) {
@@ -69,7 +69,7 @@ $(function() {
         arr.push('<span>' + key[0] + '</span>');
       }
     }
-    $('#tags').append('<tr style="display:none"><td>' + name + '</td><td style="color: #666" class="vector-tag">' 
+    $('#tags').append('<tr style="display:none"><td>' + name + '</td><td style="color: #666" class="vector-tag">'
     + attach_protein_tag(name, arr) + '</td><td>'
     + PD.translate_tag(tag).calcMW() + '</td></tr>');
   });

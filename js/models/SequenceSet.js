@@ -7,16 +7,16 @@
     this.protein = this.dna.translate();
     this.marker = {
       dna: this.ruler(this.dna),
-      protein: this.ruler(this.protein, 30),
-    }
+      protein: this.ruler(this.protein, 30)
+    };
     this.title = title || '';
-    if (title instanceof Array) { this.title = title[1] }
-  }
+    if (title instanceof Array) { this.title = title[1]; }
+  };
   
   var p = PD.SequenceSet.prototype;
   
   p.ruler = function(str, padding) { // for protein: padding = 30, CSS::left: 6px
-    if (typeof padding == 'undefined') { padding = 10 }
+    if (typeof padding == 'undefined') { padding = 10; }
     
     if (typeof str != 'String') {
     str = str.toString();
@@ -27,12 +27,12 @@
   
     for (var i = 1; i <= count; i++) {
       var pad_n = padding - i.toString().length - 1,
-          text  = '<span class="marker-group"><span class="spacer">' 
-                  + (new Array(parseInt(pad_n) + 1).join('&nbsp;')) 
+          text  = '<span class="marker-group"><span class="spacer">'
+                  + (new Array(parseInt(pad_n) + 1).join('&nbsp;'), 10)
                   + '</span><span class="number">' + i + '<u>0</u></span></span>';
-      nums += text
+      nums += text;
     }
   
     return nums;
-  }
-})();
+  };
+}());

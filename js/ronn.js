@@ -15,7 +15,7 @@ PD.ronn = {
     return this.url;
   },
   
-  post: function(seq) {  
+  post: function(seq) {
     $.post(this.url, { seq: seq },
       function(data) {
         $('#ronn').find('#ronn-ranges').append(data.disorder_ranges);
@@ -39,7 +39,7 @@ PD.ronn = {
         );
         
         function ronn_sym(key) {
-          var sym = { '*': 'disordered', '-': 'ordered' }
+          var sym = { '*': 'disordered', '-': 'ordered' };
         }
                
         /*console.log(
@@ -49,9 +49,9 @@ PD.ronn = {
         
         $('#ronn div').not('#ronn-chart').css({
           'word-wrap': 'break-word',
-          'font-family': 'Courier',
+          'font-family': 'Courier'
         });
-      }, 
+      },
       "json"
     );
   },
@@ -69,11 +69,11 @@ PD.ronn = {
           chartType: 'LineChart',
           chartOptions: {
             chartArea: { 'width': '85%', 'height': '20%' },
-            hAxis: { 'baselineColor': 'none' },
+            hAxis: { 'baselineColor': 'none' }
           },
           minRangeSize: response.disorder.length / 5
         }
-      },
+      }
     });
     
     // Main chart
@@ -86,7 +86,7 @@ PD.ronn = {
         title: 'Probability of disorder',
         hAxis: { title: 'Residue position', gridlines: { count: calcCount(response.disorder) } },
         vAxis: { title: 'Probability of disorder', minValue: 0, maxValue: 1, gridlines: { count: 3 } },
-        legend: { position: 'none' },
+        legend: { position: 'none' }
       }
     });
       
@@ -115,4 +115,4 @@ PD.ronn = {
     dashboard.draw(data);
     window.ctrl = control;
   }
-}
+};
