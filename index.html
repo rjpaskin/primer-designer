@@ -12,7 +12,7 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
   <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
   <script type="text/javascript">
-    var PD = {};
+    var PD = {}, Bio = {};
     PD.extend = function(base, ext, extra) {
       ext.prototype = Object.create(base.prototype);
       ext.prototype.constructor = ext; // Need to explicitly set ext's constructor
@@ -28,10 +28,10 @@
     }
   </script>
   <script type="text/javascript" src="js/settings.js"></script>
-  <script type="text/javascript" src="js/models/GeneticCode.js"></script>
-  <script type="text/javascript" src="js/models/_Sequence.js"></script>
-  <script type="text/javascript" src="js/models/DNASequence.js"></script>
-  <script type="text/javascript" src="js/models/ProteinSequence.js"></script>
+  <script type="text/javascript" src="js/bio/GeneticCode.js"></script>
+  <script type="text/javascript" src="js/bio/_Sequence.js"></script>
+  <script type="text/javascript" src="js/bio/DNASequence.js"></script>
+  <script type="text/javascript" src="js/bio/ProteinSequence.js"></script>
   <script type="text/javascript" src="js/models/SequenceSet.js"></script>
   <script type="text/javascript" src="js/models/PrimerSet.js"></script>
   

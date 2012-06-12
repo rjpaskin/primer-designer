@@ -1,10 +1,10 @@
 /** Class ProteinSequence **/
 (function() {
-  PD.ProteinSequence = function(seq) {
-    PD.Sequence.call(this, seq, 'FLSY\*CWPHQRIMTNKVADEG\?');
+  Bio.ProteinSequence = function(seq) {
+    Bio.Sequence.call(this, seq, 'FLSY\*CWPHQRIMTNKVADEG\?');
   };
   
-  var p = PD.extend(PD.Sequence, PD.ProteinSequence);
+  var p = PD.extend(Bio.Sequence, Bio.ProteinSequence);
   
   // Details of each amino acid
   // Molecular weight values from http://web.expasy.org/findmod/findmod_masses.html#AA

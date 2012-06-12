@@ -1,12 +1,12 @@
 /** Generic Class Sequence **/
 (function() {
-  PD.Sequence = function(seq, allowed) {
+  Bio.Sequence = function(seq, allowed) {
     var regexp = new RegExp('[^' + allowed + ']', "g");
     this.seq = seq.toUpperCase().replace(regexp, '');
     this.length = this.len();
   };
   
-  var p = PD.Sequence.prototype;
+  var p = Bio.Sequence.prototype;
   
   p.count = function(str) {
     return (this.seq.length - this.seq.replace(new RegExp(str,"g"), '').length) / str.length;

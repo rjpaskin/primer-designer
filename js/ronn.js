@@ -95,7 +95,7 @@ PD.ronn = {
     data.addColumn('number', 'Disorder');
             
     $.each(response.disorder, function(num, info) {
-      data.addRow([{ v: num + 1, f: PD.ProteinSequence.prototype.aa[info.r].sym + ' ' + (num + 1) }, info.d]);
+      data.addRow([{ v: num + 1, f: Bio.ProteinSequence.prototype.aa[info.r].sym + ' ' + (num + 1) }, info.d]);
     });
     
     function calcCount(arr) {

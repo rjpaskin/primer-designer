@@ -1,10 +1,10 @@
 /** Class DNASequence **/
 (function() {
-  PD.DNASequence = function(seq) {
-    PD.Sequence.call(this, seq, 'ATCG');
+  Bio.DNASequence = function(seq) {
+    Bio.Sequence.call(this, seq, 'ATCG');
   };
   
-  var p = PD.extend(PD.Sequence, PD.DNASequence);
+  var p = PD.extend(Bio.Sequence, Bio.DNASequence);
   
   p.complement = function() {
     var bases  = { A: 'T', T: 'A', C: 'G', G: 'C' },
@@ -26,7 +26,7 @@
     for (var i = 0, l = this.seq.length; i + 2 < l; i += 3) {
       protein += this.translateCodon(this.seq[i], this.seq[i+1], this.seq[i+2]);
     }
-    return new PD.ProteinSequence(protein);
+    return new Bio.ProteinSequence(protein);
   };
     
   p.translateCodon = function(b1, b2, b3) {
@@ -49,7 +49,7 @@
       return '?';
     }
     else {
-      return PD.GeneticCode.STANDARD.ncbiString[base1 * 16 + base2 * 4 + base3];
+      return Bio.GeneticCode.STANDARD.ncbiString[base1 * 16 + base2 * 4 + base3];
     }
   };
   

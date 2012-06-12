@@ -16,7 +16,7 @@ PD.translate_tag = function(tag, formatted) {
     }
   }
     
-  return new PD.ProteinSequence(str);
+  return new Bio.ProteinSequence(str);
 };
 
 $(function() {

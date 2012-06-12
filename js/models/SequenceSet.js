@@ -1,7 +1,7 @@
 /** Class SequenceSet **/
 (function() {
   PD.SequenceSet = function(dna, title) {
-    this.dna = new PD.DNASequence(dna);
+    this.dna = new Bio.DNASequence(dna);
     
     this.complement = this.dna.complement();
     this.protein = this.dna.translate();
