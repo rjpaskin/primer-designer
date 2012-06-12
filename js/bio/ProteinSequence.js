@@ -8,7 +8,7 @@
   
   // Details of each amino acid
   // Molecular weight values from http://web.expasy.org/findmod/findmod_masses.html#AA
-  p.aa = {
+  Bio.ProteinSequence.aa = {
     A: { sym: 'Ala', name: 'Alanine',       mw:  71.0788 },
     R: { sym: 'Arg', name: 'Arginine',      mw: 156.1875 },
     N: { sym: 'Asn', name: 'Asparagine',    mw: 114.1038 },
@@ -35,7 +35,7 @@
     var sum = 0,
         seq = this;
     
-    $.each(this.aa, function(aa, properties) {
+    $.each(this.constructor.aa, function(aa, properties) {
       sum += seq.count(aa) * properties.mw;
     });
     
