@@ -34,10 +34,11 @@
   p.calcMW = function() {
     var sum = 0,
         seq = this;
-    
-    $.each(this.constructor.aa, function(aa, properties) {
-      sum += seq.count(aa) * properties.mw;
-    });
+        
+    var properties = this.constructor.aa;
+    for (var aa in properties) {
+      sum += seq.count(aa) * properties[aa].mw;
+    }
     
     // Need to add MW of water
     sum += 18.015;
@@ -58,9 +59,9 @@
     var seq = this,
       coeff = 0;
     
-    $.each(values, function(aa, val) {
-      coeff += seq.count(aa) * val;
-    });
+    for (var aa in values) {
+      coeff += seq.count(aa) * values[aa];
+    }
     
     if (mode == 'ox') {
       values.C = 125;
