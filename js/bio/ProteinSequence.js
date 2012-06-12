@@ -8,6 +8,8 @@
   
   // Details of each amino acid
   // Molecular weight values from http://web.expasy.org/findmod/findmod_masses.html#AA
+  // Weight values are for amino acids in a polypeptide chain, since:
+  //     M.W. in chain = M.W of monomer - M.W. of water
   Bio.ProteinSequence.aa = {
     A: { sym: 'Ala', name: 'Alanine',       mw:  71.0788 },
     R: { sym: 'Arg', name: 'Arginine',      mw: 156.1875 },
@@ -31,6 +33,7 @@
     V: { sym: 'Val', name: 'Valine',        mw:  99.1326 }
   };
   
+  // Calculate the molecular weight of the sequence.
   p.calcMW = function() {
     var sum = 0,
         seq = this;
@@ -46,7 +49,9 @@
     return sum.toFixed(2);
   };
   
-  // Extinction coefficient at 280 nm
+  // Calculate the extinction coefficient at 280 nm, based on the ProtParam algorithm.
+  // Value given by default is for reduced proteins - to calculate oxidised value, pass
+  // the string 'ox' as a parameter.
   p.calcExtCoeff = function(mode) {
     if (typeof mode == 'undefined') { mode = 'red'; }
     // Values from http://web.expasy.org/tools/protparam/protparam-doc.html

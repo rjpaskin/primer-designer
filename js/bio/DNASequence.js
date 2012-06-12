@@ -6,6 +6,7 @@
   
   var p = PD.extend(Bio.Sequence, Bio.DNASequence);
   
+  // Return the complement of the sequence.
   p.complement = function() {
     var bases  = { A: 'T', T: 'A', C: 'G', G: 'C' },
         output = '';
@@ -21,6 +22,9 @@
     return new this.constructor(output);
   };
   
+  // Translate sequence into a protein sequence, returning a new
+  // Bio.ProteinSequence object.
+  // Currently only translates using standard code (see `this.translateCodon`).
   p.translate = function() {
     var protein = "";
     for (var i = 0, l = this.seq.length; i + 2 < l; i += 3) {
@@ -28,7 +32,9 @@
     }
     return new Bio.ProteinSequence(protein);
   };
-    
+  
+  // Translate a single codon into the equivalent amino acid.
+  // Currently only translates using standard code.
   p.translateCodon = function(b1, b2, b3) {
     // Private sub-function
     var base2index = function(base) {
@@ -53,6 +59,8 @@
     }
   };
   
+  // Highlight a section of the sequence.
+  // TODO: move to PD namespace.
   p.highlight = function(start, end) {
     var region = this.seq.slice(start, end),
         len    = PD.settings.homology_length * 3;
