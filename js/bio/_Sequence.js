@@ -53,14 +53,6 @@
     return new this.constructor(this.seq.substr(start, length));
   };
   
-  // Highlight a section of the sequence.
-  // TODO: move to PD namespace.
-  p.highlight = function(start, end) {
-    return '<span class="unselected">' + this.seq.slice(0, start) + '</span>'
-    + '<span>'+this.seq.slice(start, end)+'</span>'
-    + '<span class="unselected">' + this.seq.substr(end) + '</span>';
-  };
-  
   // Return the string representation of the sequence.
   p.toString = function() {
     return this.seq;
