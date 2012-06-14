@@ -1,7 +1,7 @@
 PD.translate_tag = function(tag, formatted) {
-  if (formatted == undefined) { formatted = false; }
+  if (formatted == null) { formatted = false; }
   var cmpnts = tag.split('-'),
-      str = '';
+      str    = '';
   
   for (var i in cmpnts) {
     var key = cmpnts[i].replace(/[\{\}]/g, '').split('*'),

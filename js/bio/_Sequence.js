@@ -37,8 +37,8 @@
   // Generate a section of the sequence, returning a new sequence object.
   // Syntax is the same as JavaScript's `String.slice()` function.
   p.slice = function(start, end) {
-    if (typeof start == 'undefined') { start = 0; }
-    if (typeof end == 'undefined') { end = this.seq.length; }
+    if (start == null) { start = 0; }
+    if (end == null) { end = this.seq.length; }
         
     return new this.constructor(this.seq.slice(start, end));
   };
@@ -46,8 +46,8 @@
   // Generate a sub-sequence.
   // Syntax is the same as JavaScript's `String.substr()` function. 
   p.substr = function(start, length) {
-    if (typeof length == undefined) {
-    return new this.constructor(this.seq.substr(start));
+    if (length == null) {
+      return new this.constructor(this.seq.substr(start));
     }
     
     return new this.constructor(this.seq.substr(start, length));
@@ -66,7 +66,7 @@
   // Output sequence in Fasta format.
   // Pass an optional string to get a title in the output (defaults to 'Untitled sequence')
   p.toFasta = function(title) {
-    if (typeof title == undefined) { title = 'Untitled sequence'; }
+    if (title == null) { title = 'Untitled sequence'; }
     return '>' + title + "\n" + this.seq.match(/.{1,80}/g).join("\n");
   };
 }());

@@ -37,8 +37,8 @@ PD.apply_slider = function(ele) {
 };
 
 PD.create_primer = function(start, end) {
-  if (typeof start === 'undefined') { start = 1; }
-  if (typeof end === 'undefined') { end = PD.MySequence.protein.length; }
+  if (start == null) { start = 1; }
+  if (end == null) { end = PD.MySequence.protein.length; }
   
   var data = new PD.PrimerSet(start, end);
   var tmpl_data = {

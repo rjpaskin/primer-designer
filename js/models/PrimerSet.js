@@ -7,7 +7,7 @@
     this.setFwd();
     this.setRev();
     
-    if (typeof family == 'undefined') { family = 'A'; }
+    if (family == null) { family = 'A'; }
     this.family = family;
   };
   

@@ -53,16 +53,16 @@
   // Value given by default is for reduced proteins - to calculate oxidised value, pass
   // the string 'ox' as a parameter.
   p.calcExtCoeff = function(mode) {
-    if (typeof mode == 'undefined') { mode = 'red'; }
+    if (mode == null) { mode = 'red'; }
     // Values from http://web.expasy.org/tools/protparam/protparam-doc.html
     var values = {
-      Y: 1490,
-      W: 5500
-      //C: 125, // cystine
+      Y: 1490, // tyrosine
+      W: 5500, // tryptophan
+      C: 125   // cystine (2 cysteines)
     };
     
-    var seq = this,
-      coeff = 0;
+    var seq   = this,
+        coeff = 0;
     
     for (var aa in values) {
       coeff += seq.count(aa) * values[aa];
