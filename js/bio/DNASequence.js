@@ -24,19 +24,12 @@
   
   // Translate sequence into a protein sequence, returning a new
   // Bio.ProteinSequence object.
-  // Currently only translates using standard code (see `this.translateCodon`).
-  p.translate = function() {
+  // Pass an optional Bio.CodonTable object to translate into a different
+  // genetic code.
+  p.translate = function(code) {
     var protein = "";
-    for (var i = 0, l = this.seq.length; i + 2 < l; i += 3) {
-      protein += this.translateCodon(this.seq[i], this.seq[i+1], this.seq[i+2]);
-    }
-    return new Bio.ProteinSequence(protein);
-  };
-  
-  // Translate a single codon into the equivalent amino acid.
-  // Currently only translates using standard code.
-  p.translateCodon = function(b1, b2, b3) {
-    // Private sub-function
+    if (code == null) { code = Bio.CodonTable.STANDARD; }
+    
     var base2index = function(base) {
       // Switch is faster than Array#indexOf
       switch(base) {
@@ -47,15 +40,24 @@
         default: return -1;
       }
     };
-    var base1 = base2index(b1),
-        base2 = base2index(b2),
-        base3 = base2index(b3);
     
-    if (base1 == -1 || base2 == -1 || base3 == -1) {
-      return '?';
+    // Translate a single codon into the equivalent amino acid.
+    var translateCodon = function(b1, b2, b3) {
+      var base1 = base2index(b1),
+          base2 = base2index(b2),
+          base3 = base2index(b3);
+    
+      if (base1 == -1 || base2 == -1 || base3 == -1) {
+        return '?';
+      }
+      else {
+        return code.ncbiString[base1 * 16 + base2 * 4 + base3];
+      }
+    };
+    
+    for (var i = 0, l = this.seq.length; i + 2 < l; i += 3) {
+      protein += translateCodon(this.seq[i], this.seq[i+1], this.seq[i+2]);
     }
-    else {
-      return Bio.GeneticCode.STANDARD.ncbiString[base1 * 16 + base2 * 4 + base3];
-    }
+    return new Bio.ProteinSequence(protein);
   };
 }());
