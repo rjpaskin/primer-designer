@@ -5,7 +5,7 @@ PD.translate_tag = function(tag, formatted) {
   
   for (var i in cmpnts) {
     var key = cmpnts[i].replace(/[\{\}]/g, '').split('*'),
-        multiplier = ((key.length > 1) ? parseInt(key[1]) : 1),
+        multiplier = ((key.length > 1) ? parseInt(key[1], 10) : 1),
         arr = new Array(multiplier + 1);
    
     if (PD.settings.tags[key[0]] != undefined) {

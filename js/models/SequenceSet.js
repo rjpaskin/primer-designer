@@ -29,7 +29,7 @@
   
     for (var i = 1; i <= count; i++) {
       var pad_n = padding - i.toString().length - 1,
-          text  = new Array(parseInt(pad_n) + 1).join('&nbsp;');
+          text  = new Array(parseInt(pad_n, 10) + 1).join('&nbsp;');
           
       output += '<span class="marker-group"><span class="spacer">' + text
                 + '</span><span class="number">' + i + '<u>0</u></span></span>';
