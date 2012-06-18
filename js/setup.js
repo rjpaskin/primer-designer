@@ -2,9 +2,10 @@
 
 PD.apply_slider = function(ele) {
   var primer = $(ele),
-      data   = primer.data('primerSet');
+      data   = primer.data('primerSet'),
+      slider = $(ele).find(".slider");
   
-  $(ele).find(".slider").slider({
+  slider.slider({
     range: true,
     min: 0,
     max: PD.MySequence.protein.length,
@@ -13,27 +14,30 @@ PD.apply_slider = function(ele) {
       // Enforce mimimum size for constructs
       var min_len = PD.settings.min_construct_length;
       if (ui.values[1] - ui.values[0] <= min_len) { return false; }
-            
+
+      // Update model
       data.setStart(ui.values[0] + 1);
       data.setEnd(ui.values[1]);
       
+      // Update primer box UI
       $(this).prevAll("input.range").val(data.start + ' - ' + data.end);
             
       PD.highlightAll(data.start, data.end);
-        
+
+      // Update homology tags on primer set
       var table = $(this).nextAll("table"),
           tag   = PD.settings.homology[data.family];
       
       $(this).nextAll("table").find(".f-primer td.seq .insert")
-        .html('<span class="insert">'+data.fwd+'</span>')
+        .html('<span class="insert">' + data.fwd + '</span>')
       .end().find(".r-primer td.seq .insert")
-        .html('<span class="insert">'+data.rev+'</span>');
+        .html('<span class="insert">' + data.rev + '</span>');
     },
     start: function(event, ui) {
       $(this).parents(".primer").click(); // give primer box focus
     }
   });
-  $(ele).find('.slider').trigger('slide');
+  slider.triggerHandler('slide');
 };
 
 PD.create_primer = function(start, end) {
@@ -42,6 +46,7 @@ PD.create_primer = function(start, end) {
   
   var data = new PD.PrimerSet(start, end);
 
+  // Additional info for template/export
   data.tag = PD.settings.homology[data.family];
   data.num = $('#primers .primer').length + 1;
   
@@ -56,12 +61,15 @@ PD.create_primer = function(start, end) {
 
 PD.renumber_primers = function() {
   $("#primers .primer").each(function() {
-    var el = $(this);
-    el.find(".num").html(el.index() + 1);
+    var el  = $(this),
+        ind = el.index() + 1;
+        
+    el.find(".num").html(ind);
+    el.data('primerSet').num = ind;
   });
 };
 
-PD.highlightAll = function(start,end) {
+PD.highlightAll = function(start, end) {
   $('#protein, #dna, #complement').each(function() {
     var factor = (this.id !== 'protein') ? 3 : 1;
     $(this).html(PD.MySequence[this.id].highlight(
@@ -192,9 +200,10 @@ $(function() {
       // Add primer to list
       case 'add-primer':
         PD.create_primer();
+        var primers = $("#primers .primer");
 
-        if ($("#primers .primer").length === 1) {
-          $("#primers .primer").first().trigger('click');
+        if (primers.length === 1) {
+          primers.first().trigger('click');
         }
       break;
       
@@ -212,12 +221,10 @@ $(function() {
     
         primers.each(function(index) {
           var name = $("input#default-name").val(),
-              ind  = index + 1,
-              data = $(this).data('primerSet'),
-              tags = PD.settings.homology[data.family];
-      
-          values.push(name + ((2 * ind) - 1) + ' ' + tags[0] + data.fwd);
-          values.push(name + (2 * ind) + ' ' + tags[1] + data.rev);
+              data = $(this).data('primerSet');
+
+          values.push(name + ((2 * data.num) - 1) + ' ' + data.tag[0] + data.fwd);
+          values.push(name + (2 * data.num) + ' ' + data.tag[1] + data.rev);
         });
         $('#popup-export textarea.export').empty()
           .html(values.join("\n")).attr("rows", values.length)
@@ -249,7 +256,7 @@ $(function() {
     }
   });
   
-  $(document)
+  $('#primers')
   // Primer boxes
   .on('click', ".primer", function() {
     var el   = $(this),
@@ -282,14 +289,13 @@ $(function() {
   
   .on('change', "select.family", function() {
     var el     = $(this),
-        family = el.val(),
-        tag    = PD.settings.homology[family],
         data   = el.parents('.primer').data('primerSet');
         
-    data.family = family;
+    data.family = el.val();
+    data.tag    = PD.settings.homology[data.family];
     
     el.nextAll('table')
-      .find('.f-primer .vector').html(tag[0]).end()
-      .find('.r-primer .vector').html(tag[1]);
+      .find('.f-primer .vector').html(data.tag[0]).end()
+      .find('.r-primer .vector').html(data.tag[1]);
   });
 });
