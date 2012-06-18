@@ -8,7 +8,10 @@ $(function() {
               AATGTGCCTGGATGCGTTCCCAAAATTAGTTTGTTTTAAAAAACGTATTGAAGCTATCCCACAAATTGATAAGTACTTGAAATCCAGCAAGTATATAGCA\
               TGGCCTTTGCAGGGCTGGCAAGCCACGTTTGGTGGTGGCGACCATCCTCCAAAATCGGATCTGGTTCCGCGTGGATCCGAAAACCTGTATTTTCAGGGCG\
               CC';
-  PD.MySequence = new PD.SequenceSet(_seq);
-       
+  PD.MySequence = new PD.SequenceSet(_seq, 'Demo sequence');
+  
+  // Manually set marker
+  $('#marker_dna').html(PD.MySequence.marker.dna);
+     
   //PD.ronn.post(PD.MySequence.protein.slice(20,200).toFasta('prot 20-100'));
 });
