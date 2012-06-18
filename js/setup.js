@@ -25,9 +25,6 @@ PD.apply_slider = function(ele) {
       PD.highlightAll(data.start, data.end);
 
       // Update homology tags on primer set
-      var table = $(this).nextAll("table"),
-          tag   = PD.settings.homology[data.family];
-      
       $(this).nextAll("table").find(".f-primer td.seq .insert")
         .html('<span class="insert">' + data.fwd + '</span>')
       .end().find(".r-primer td.seq .insert")
@@ -47,7 +44,6 @@ PD.create_primer = function(start, end) {
   var data = new PD.PrimerSet(start, end);
 
   // Additional info for template/export
-  data.tag = PD.settings.homology[data.family];
   data.num = $('#primers .primer').length + 1;
   
   var tmpl   = PD.tmpl('primer_tmpl', data),
@@ -223,8 +219,8 @@ $(function() {
           var name = $("input#default-name").val(),
               data = $(this).data('primerSet');
 
-          values.push(name + ((2 * data.num) - 1) + ' ' + data.tag[0] + data.fwd);
-          values.push(name + (2 * data.num) + ' ' + data.tag[1] + data.rev);
+          values.push(name + ((2 * data.num) - 1) + ' ' + data.tags[0] + data.fwd);
+          values.push(name + (2 * data.num) + ' ' + data.tags[1] + data.rev);
         });
         $('#popup-export textarea.export').empty()
           .html(values.join("\n")).attr("rows", values.length)
@@ -292,10 +288,11 @@ $(function() {
         data   = el.parents('.primer').data('primerSet');
         
     data.family = el.val();
-    data.tag    = PD.settings.homology[data.family];
+    // Update PrimerSet model
+    data.getTags();
     
     el.nextAll('table')
-      .find('.f-primer .vector').html(data.tag[0]).end()
-      .find('.r-primer .vector').html(data.tag[1]);
+      .find('.f-primer .vector').html(data.tags[0]).end()
+      .find('.r-primer .vector').html(data.tags[1]);
   });
 });

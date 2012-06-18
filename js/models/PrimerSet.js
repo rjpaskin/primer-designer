@@ -7,8 +7,11 @@
     this.setFwd();
     this.setRev();
     
+    
     if (family == null) { family = 'A'; }
     this.family = family;
+    
+    this.getTags();
   };
   
   var p = PD.PrimerSet.prototype;
@@ -38,4 +41,9 @@
     this.rev = PD.MySequence.complement.substr(this.dna_end - len, len).reverse();
     return this;
   };
+  
+  p.getTags = function() {
+    this.tags = PD.settings.homology[this.family];
+    return this;
+  }
 }());
