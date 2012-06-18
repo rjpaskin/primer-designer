@@ -41,16 +41,11 @@ PD.create_primer = function(start, end) {
   if (end == null) { end = PD.MySequence.protein.length; }
   
   var data = new PD.PrimerSet(start, end);
-  var tmpl_data = {
-    fwd:   data.fwd,
-    rev:   data.rev,
-    tag:   PD.settings.homology[data.family],
-    start: data.start,
-    end:   data.end,
-    num:   $('#primers .primer').length + 1
-  };
+
+  data.tag = PD.settings.homology[data.family];
+  data.num = $('#primers .primer').length + 1;
   
-  var tmpl   = PD.tmpl('primer_tmpl', tmpl_data),
+  var tmpl   = PD.tmpl('primer_tmpl', data),
       primer = $(tmpl).appendTo('#primers');
   
   primer.data('primerSet', data);
@@ -67,9 +62,9 @@ PD.renumber_primers = function() {
 };
 
 PD.highlightAll = function(start,end) {
-  $.each(['protein', 'dna', 'complement'], function(i,seq) {
-    var factor = (seq !== 'protein') ? 3 : 1;
-    $('#'+seq).html(PD.MySequence[seq].highlight(
+  $('#protein, #dna, #complement').each(function() {
+    var factor = (this.id !== 'protein') ? 3 : 1;
+    $(this).html(PD.MySequence[this.id].highlight(
       (start - 1) * factor, end * factor
     ));
   });
@@ -175,8 +170,8 @@ $(function() {
   });
   
   $('#sequences').bind('sequenceChanged', function(data) {
-    $.each(['protein', 'dna', 'complement'], function(i,seq) {
-      $('#'+seq).html(PD.MySequence[seq].toString()).wrapInner('<span />');
+    $('#protein, #dna, #complement').each(function() {
+      $(this).html(PD.MySequence[this.id].toString()).wrapInner('<span />');
     });
     $('#marker_dna').html(PD.MySequence.marker.dna);
     
@@ -225,8 +220,8 @@ $(function() {
           values.push(name + (2 * ind) + ' ' + tags[1] + data.rev);
         });
         $('#popup-export textarea.export').empty()
-        .html(values.join("\n")).attr("rows", values.length)
-        .parent().dialog("open");
+          .html(values.join("\n")).attr("rows", values.length)
+          .parent().dialog("open");
       break;
       
       // #DEBUG: toggle between different screens
@@ -260,10 +255,8 @@ $(function() {
     var el   = $(this),
         data = el.data('primerSet');
         
-    PD.highlightAll(
-      data.start,
-      data.end
-    );
+    PD.highlightAll(data.start, data.end);
+    
     $(".primer").removeClass('selected');
     el.addClass('selected');
     return false;
@@ -296,7 +289,7 @@ $(function() {
     data.family = family;
     
     el.nextAll('table')
-    .find('.f-primer .vector').html(tag[0]).end()
-    .find('.r-primer .vector').html(tag[1]);
+      .find('.f-primer .vector').html(tag[0]).end()
+      .find('.r-primer .vector').html(tag[1]);
   });
 });
