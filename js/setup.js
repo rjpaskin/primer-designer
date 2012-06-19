@@ -85,6 +85,17 @@ PD.parseFasta = function(fasta) {
   };
 };
 
+PD.collectPrimerInfo = function(name) {
+  return $('#primers .primer').map(function() {
+    var data = $(this).data('primerSet');
+
+    return [
+      name + ((2 * data.num) - 1) + ' ' + data.tags[0] + data.fwd,
+      name + (2 * data.num) + ' ' + data.tags[1] + data.rev
+    ];
+  }).get();
+}
+
 }());
 
 /** Setup on DOM load **/
@@ -216,19 +227,19 @@ $(function() {
       // Show export dialog
       case 'export':
         var values  = [],
-            primers = $("#primers .primer");
+            primers = $("#primers .primer"),
+            name    = $("input#default-name").val();
+            
         if (primers.length === 0) { return false; } // nothing to export
-    
-        primers.each(function(index) {
-          var name = $("input#default-name").val(),
-              data = $(this).data('primerSet');
-
-          values.push(name + ((2 * data.num) - 1) + ' ' + data.tags[0] + data.fwd);
-          values.push(name + (2 * data.num) + ' ' + data.tags[1] + data.rev);
-        });
-        $('#popup-export textarea.export').empty()
-          .html(values.join("\n")).attr("rows", values.length)
-          .parent().dialog("open");
+        
+        var info = PD.collectPrimerInfo(name);
+        
+        $('#popup-export textarea.export')
+          .empty()
+          .html(info.join("\n"))
+          .attr("rows", info.length)
+          .parent()
+          .dialog("open");
       break;
       
       // #DEBUG: toggle between different screens
