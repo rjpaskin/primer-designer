@@ -66,11 +66,11 @@ PD.renumber_primers = function() {
 };
 
 PD.highlightAll = function(start, end) {
-  $('#protein, #dna, #complement').each(function() {
+  $('#protein, #dna, #complement').html(function() {
     var factor = (this.id !== 'protein') ? 3 : 1;
-    $(this).html(PD.MySequence[this.id].highlight(
+    return PD.MySequence[this.id].highlight(
       (start - 1) * factor, end * factor
-    ));
+    );
   });
 };
 
@@ -174,9 +174,10 @@ $(function() {
   });
   
   $('#sequences').bind('sequenceChanged', function(data) {
-    $('#protein, #dna, #complement').each(function() {
-      $(this).html(PD.MySequence[this.id].toString()).wrapInner('<span />');
-    });
+    $('#protein, #dna, #complement').html(function() {
+      return PD.MySequence[this.id].toString();
+    }).wrapInner('<span />');
+    
     $('#marker_dna').html(PD.MySequence.marker.dna);
     
     $(this).show();
