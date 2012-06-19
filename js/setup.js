@@ -25,9 +25,12 @@ PD.apply_slider = function(ele) {
       PD.highlightAll(data.start, data.end);
 
       // Update homology tags on primer set
-      $(this).nextAll("table").find(".f-primer td.seq .insert")
+      $(this)
+        .nextAll("table")
+        .find(".f-primer td.seq .insert")
         .html('<span class="insert">' + data.fwd + '</span>')
-      .end().find(".r-primer td.seq .insert")
+        .end()
+        .find(".r-primer td.seq .insert")
         .html('<span class="insert">' + data.rev + '</span>');
     },
     start: function(event, ui) {
@@ -285,15 +288,19 @@ $(function() {
   })
   
   .on('change', "select.family", function() {
-    var el     = $(this),
-        data   = el.parents('.primer').data('primerSet');
+    var element = $(this),
+        data    = element.parents('.primer').data('primerSet');
         
-    data.family = el.val();
+    data.family = element.val();
     // Update PrimerSet model
     data.getTags();
     
-    el.nextAll('table')
-      .find('.f-primer .vector').html(data.tags[0]).end()
-      .find('.r-primer .vector').html(data.tags[1]);
+    element
+      .nextAll('table')
+      .find('.f-primer .vector')
+      .html(data.tags[0])
+      .end()
+      .find('.r-primer .vector')
+      .html(data.tags[1]);
   });
 });
