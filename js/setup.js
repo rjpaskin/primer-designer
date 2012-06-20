@@ -25,12 +25,11 @@ PD.apply_slider = function(ele) {
       PD.highlightAll(data.start, data.end);
 
       // Update homology tags on primer set
-      $(this)
-        .nextAll("table")
-        .find(".f-primer td.seq .insert")
+      primer
+        .find(".f-primer .insert")
         .html('<span class="insert">' + data.fwd + '</span>')
         .end()
-        .find(".r-primer td.seq .insert")
+        .find(".r-primer .insert")
         .html('<span class="insert">' + data.rev + '</span>');
     },
     start: function(event, ui) {
