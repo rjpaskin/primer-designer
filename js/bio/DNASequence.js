@@ -4,7 +4,7 @@
     Bio.Sequence.call(this, seq, 'ATCG');
   };
   
-  var p = PD.extend(Bio.Sequence, Bio.DNASequence);
+  var p = Bio.extend(Bio.Sequence, Bio.DNASequence);
   
   // Return the complement of the sequence.
   p.complement = function() {

@@ -4,7 +4,7 @@
     Bio.Sequence.call(this, seq, 'FLSY\*CWPHQRIMTNKVADEG\?');
   };
   
-  var p = PD.extend(Bio.Sequence, Bio.ProteinSequence);
+  var p = Bio.extend(Bio.Sequence, Bio.ProteinSequence);
   
   // Details of each amino acid
   // Molecular weight values from http://web.expasy.org/findmod/findmod_masses.html#AA
