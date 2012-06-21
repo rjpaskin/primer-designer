@@ -23,8 +23,9 @@
   <script type="text/javascript">
     var PD = {};
     PD.tmpl = function(name, data) {
-      var tmpl = name.replace('_tmpl', '');
-      return PD.tmpl[tmpl].call(null, data);
+      if (PD.tmpl.hasOwnProperty(name)) {
+        return PD.tmpl[name].call(null, data);
+      }
     }
   </script>
   <script type="text/javascript" src="js/settings.js"></script>

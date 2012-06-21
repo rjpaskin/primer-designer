@@ -48,7 +48,7 @@ PD.create_primer = function(start, end) {
   // Additional info for template/export
   data.num = $('#primers .primer').length + 1;
   
-  var tmpl   = PD.tmpl('primer_tmpl', data),
+  var tmpl   = PD.tmpl('primer', data),
       primer = $(tmpl).appendTo('#primers');
   
   primer.data('primerSet', data);
