@@ -22,12 +22,16 @@
 
   <script type="text/javascript">
     var PD = {};
+    PD.tmpl = function(name, data) {
+      var tmpl = name.replace('_tmpl', '');
+      return PD.tmpl[tmpl].call(null, data);
+    }
   </script>
   <script type="text/javascript" src="js/settings.js"></script>
   <script type="text/javascript" src="js/models/SequenceSet.js"></script>
   <script type="text/javascript" src="js/models/PrimerSet.js"></script>
   
-  <script type="text/javascript" src="js/template.js"></script>
+  <script type="text/javascript" src="js/_templates.js"></script>
   <script type="text/javascript" src="js/setup.js"></script>
   <script type="text/javascript" src="js/seq_demo.js"></script>
   <script type="text/javascript" src="js/tags.js"></script>
@@ -162,39 +166,6 @@
 <div id="popup-export">
   <textarea class="export" readonly="readonly"></textarea>
 </div>
-
-<script type="text/template" id="primer_tmpl">
-  <div class="primer">
-    <div class="header">
-      <a href="#" class="delete" title="Delete">&times;</a>
-      <span class="num"><%= num %></span>
-    </div>
-    <div class="box">
-      <label>Family:</label>
-      <select class="family">
-        <% for (var index in PD.settings.homology) { %>
-          <option value="<%= index %>"><%= index %></option>
-        <% } %></select>
-      <label>Range:</label>
-      <input type="text" class="range" autocomplete="off" value="<%= start %> - <%= end %>"/>
-      <div class="slider"></div>
-      <table>
-        <tr class="f-primer">
-          <td class="dir">F</td>
-          <td class="seq"><%= PD.tmpl('oligo_tmpl', {vector: tags[0], insert: fwd}) %></td>
-        </tr>
-        <tr class="r-primer">
-          <td class="dir">R</td>
-          <td class="seq"><%= PD.tmpl('oligo_tmpl', {vector: tags[1], insert: rev}) %></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</script>
-
-<script type="text/template" id="oligo_tmpl">
-  <span class="vector"><%= vector %></span><span class="insert"><%= insert %></span>
-</script>
 
 </body>
 </html>
