@@ -1,16 +1,16 @@
 <div class="primer">
   <div class="header">
     <a href="#" class="delete" title="Delete">&times;</a>
-    <span class="num"><%= num %></span>
+    <span class="num"><%- num %></span>
   </div>
   <div class="box">
     <label>Family:</label>
     <select class="family">
       <% for (var index in PD.settings.homology) { %>
-        <option value="<%= index %>"><%= index %></option>
+        <option value="<%- index %>"><%- index %></option>
       <% } %></select>
     <label>Range:</label>
-    <input type="text" class="range" autocomplete="off" value="<%= start %> - <%= end %>"/>
+    <input type="text" class="range" autocomplete="off" value="<%- start %> - <%- end %>"/>
     <div class="slider"></div>
     <table>
       <tr class="f-primer">
