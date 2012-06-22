@@ -131,9 +131,7 @@ $(function() {
     tolerance: 'pointer',
     update:    PD.renumber_primers
   });
-  
-  $("#primers .primer").first().addClass("selected");
-  
+    
   $("button").each(function() {
     var el   = $(this),
         icon = el.attr('data-icon');
@@ -153,8 +151,15 @@ $(function() {
     title:     'Export'
   });
   
+  // Access to files in 'seq' directory for quick selection
+  $.get('_select_seq.php', function(data) {
+    // Fetch <select> element built on the server
+    $(data).appendTo('#new-sequence')
+  });
+  
   // Form
-  $('#new-sequence').on('keyup', 'textarea', function(e) {
+  $('#new-sequence')
+  .on('keyup', 'textarea', function(e) {
     var fasta = PD.parseFasta($(this).val()),
         bp    = fasta.seq.length;
         
@@ -175,25 +180,23 @@ $(function() {
       $('#new-sequence .title').val(fasta.name);
       PD.paste_flag = false;
     }
-  }).bind('paste', function() {
+  })
+  
+  .on('paste', function() {
     PD.paste_flag = true;
-  });
+  })
   
-  // Access to files in 'seq' directory for quick selection
-  $.get('_select_seq.php', function(data) {
-    // Fetch <select> element built on the server and attach change event
-    $(data).appendTo('#new-sequence').children('select').change(function() {
-      // Fetch specified file and render it inside the form.
-      // Trigger keyup handler to get stats about sequence.
-      $.get($(this).val(), function(seq) {
-        PD.paste_flag = true;
-        $('#new-sequence textarea').val(seq).trigger('keyup');
-      });
+  .on('change', 'select', function() {
+    // Fetch specified file and render it inside the form.
+    // Trigger keyup handler to get stats about sequence.
+    $.get($(this).val(), function(seq) {
+      PD.paste_flag = true;
+      $('#new-sequence textarea').val(seq).trigger('keyup');
     });
-  });
+  })
   
-  // Submit new sequence form
-  $(document).on('submit', "#new-sequence", function(e) {
+   // Submit new sequence form
+  .on('submit', function(e) {
     var fasta = PD.parseFasta($('#new-sequence textarea').val());
         
     PD.MySequence = new PD.SequenceSet(fasta.seq, fasta.name);
@@ -203,7 +206,7 @@ $(function() {
     return false;
   });
   
-  $('#sequences').bind('sequenceChanged', function(data) {
+  $('#sequences').on('sequenceChanged', function(data) {
     $('#protein, #dna, #complement').html(function() {
       return PD.MySequence[this.id].toString();
     }).wrapInner('<span />');
@@ -212,12 +215,8 @@ $(function() {
     
     $(this).show();
   });
-  
-  $('#primers').bind('sequenceChanged', function() {
-    $(this).children('.primer').remove();
-  });
-  
-  $('#seq-title').bind('sequenceChanged', function() {
+    
+  $('#seq-title').on('sequenceChanged', function() {
     $(this).html(PD.MySequence.title);
   });
   
@@ -299,7 +298,7 @@ $(function() {
   .on('click', ".delete", function() {
     var deleted = $(this).parents(".primer");
     // if currently selected
-    if (deleted.attr('class').search(/selected/) !== -1) {
+    if (deleted.hasClass('selected')) {
       if (deleted.prev('.primer').click().addClass("selected").length === 0) {
         deleted.next('.primer').click().addClass("selected");
       }
@@ -329,5 +328,9 @@ $(function() {
       .end()
       .find('.r-primer .vector')
       .html(data.tags[1]);
+  })
+  
+  .on('sequenceChanged', function() {
+    $(this).children('.primer').remove();
   });
 });
