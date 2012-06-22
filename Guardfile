@@ -8,7 +8,7 @@ module ::Guard
     end
 
     def run_on_changes(paths)
-      UI.info paths
+      UI.info paths.join(', ')
       Notifier.notify `bundle exec rake tmpl`
     end
   end

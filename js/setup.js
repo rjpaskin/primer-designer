@@ -69,10 +69,27 @@ PD.renumber_primers = function() {
 
 PD.highlightAll = function(start, end) {
   $('#protein, #dna, #complement').html(function() {
-    var factor = (this.id !== 'protein') ? 3 : 1;
-    return PD.MySequence[this.id].highlight(
-      (start - 1) * factor, end * factor
-    );
+    var obj = PD.MySequence[this.id];
+    
+    if (this.id === 'protein') {
+      return PD.tmpl('protein_highlight', {
+        obj:   obj,
+        start: start - 1, 
+        end:   end
+      });
+    }
+    else {
+      var _start = (start - 1) * 3,
+          _end   = end * 3;
+          
+      return PD.tmpl('dna_highlight', {
+        obj:    obj,
+        start:  _start,
+        end:    _end,
+        region: obj.slice(_start, _end),
+        len:    PD.settings.homology_length * 3
+      });
+    }
   });
 };
 

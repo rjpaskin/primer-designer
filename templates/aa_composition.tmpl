@@ -1,0 +1,7 @@
+<% $.each(Bio.ProteinSequence.aa, function(name, info) { %>
+  <tr>
+    <td class="<%- info.sym.toLowerCase() %>"><%- info.sym %></td>
+    <td><%- protein.count(name) %></td>
+    <td><%- (protein.count(name) / protein.length * 100).toFixed(1) %>%</td>
+  </tr>
+<% }); %>
