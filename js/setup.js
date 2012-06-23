@@ -107,7 +107,7 @@ $(function() {
     switch (this.id.replace(/btn-/g, '')) {
       // Add primer to list
       case 'add-primer':
-        PD.create_primer();
+        PD.createPrimer();
         var primers = $("#primers .primer");
 
         if (primers.length === 1) {
@@ -186,7 +186,7 @@ $(function() {
       }
     }
     deleted.remove();
-    PD.renumber_primers();
+    PD.renumberPrimers();
     
     // No primers left
     if ($('.primer').length === 0) {
@@ -216,7 +216,7 @@ $(function() {
     $(this).children('.primer').remove();
   })
   
-  .on('sortupdate', PD.renumber_primers)
+  .on('sortupdate', PD.renumberPrimers)
   
   .on('slide', '.primer', function(event, ui) {
       var primer = $(this),

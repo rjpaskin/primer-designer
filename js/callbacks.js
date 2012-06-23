@@ -1,6 +1,6 @@
 (function() {
 
-PD.apply_slider = function(ele) {
+PD.applySlider = function(ele) {
   var primer = $(ele),
       data   = primer.data('primerSet');
   
@@ -13,7 +13,7 @@ PD.apply_slider = function(ele) {
   .triggerHandler('slide');
 };
 
-PD.create_primer = function(start, end) {
+PD.createPrimer = function(start, end) {
   if (start == null) { start = 1; }
   if (end == null) { end = PD.MySequence.protein.length; }
   
@@ -26,12 +26,12 @@ PD.create_primer = function(start, end) {
       primer = $(tmpl).appendTo('#primers');
   
   primer.data('primerSet', data);
-  PD.apply_slider(primer);
+  PD.applySlider(primer);
 
   return primer;
 };
 
-PD.renumber_primers = function() {
+PD.renumberPrimers = function() {
   $("#primers .primer").each(function() {
     var el  = $(this),
         ind = el.index() + 1;
