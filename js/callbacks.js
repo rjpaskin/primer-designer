@@ -2,41 +2,15 @@
 
 PD.apply_slider = function(ele) {
   var primer = $(ele),
-      data   = primer.data('primerSet'),
-      slider = $(ele).find(".slider");
+      data   = primer.data('primerSet');
   
-  slider.slider({
-    range: true,
-    min: 0,
-    max: PD.MySequence.protein.length,
-    values: [data.start, data.end],
-    slide: function(event, ui) {
-      // Enforce mimimum size for constructs
-      var min_len = PD.settings.min_construct_length;
-      if (ui.values[1] - ui.values[0] <= min_len) { return false; }
-
-      // Update model
-      data.setStart(ui.values[0] + 1);
-      data.setEnd(ui.values[1]);
-      
-      // Update primer box UI
-      $(this).prevAll("input.range").val(data.start + ' - ' + data.end);
-            
-      PD.highlightAll(data.start, data.end);
-
-      // Update homology tags on primer set
-      primer
-        .find(".f-primer .insert")
-        .html('<span class="insert">' + data.fwd + '</span>')
-        .end()
-        .find(".r-primer .insert")
-        .html('<span class="insert">' + data.rev + '</span>');
-    },
-    start: function(event, ui) {
-      $(this).parents(".primer").click(); // give primer box focus
-    }
-  });
-  slider.triggerHandler('slide');
+  $(ele).find(".slider").slider({
+    range:  true,
+    min:    0,
+    max:    PD.MySequence.protein.length,
+    values: [data.start, data.end]
+  })
+  .triggerHandler('slide');
 };
 
 PD.create_primer = function(start, end) {

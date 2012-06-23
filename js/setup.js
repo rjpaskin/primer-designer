@@ -11,8 +11,7 @@ $(function() {
     items:     '.primer',
     handle:    '.header',
     axis:      'y',
-    tolerance: 'pointer',
-    update:    PD.renumber_primers
+    tolerance: 'pointer'
   });
     
   $("button").each(function() {
@@ -215,5 +214,39 @@ $(function() {
   
   .on('sequenceChanged', function() {
     $(this).children('.primer').remove();
+  })
+  
+  .on('sortupdate', PD.renumber_primers)
+  
+  .on('slide', '.primer', function(event, ui) {
+      var primer = $(this),
+          data   = primer.data('primerSet');
+  
+    // Enforce mimimum size for constructs
+    var min_len = PD.settings.min_construct_length;
+    if (ui.values[1] - ui.values[0] <= min_len) { return false; }
+
+    // Update model
+    data
+      .setStart(ui.values[0] + 1)
+      .setEnd(ui.values[1]);
+    
+    // Update primer box UI
+    primer
+      .find("input.range")
+      .val(data.start + ' - ' + data.end)
+      .end()
+      // Update homology tags on primer set
+      .find(".f-primer .insert")
+      .text(data.fwd.toString())
+      .end()      
+      .find(".r-primer .insert")
+      .text(data.rev.toString());
+      
+    PD.highlightAll(data.start, data.end);
+  })
+  
+  .on('slidestart', '.primer', function() {
+    $(this).click();
   });
 });
