@@ -5,12 +5,9 @@
   <title>Primer Designer</title>
   <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css" rel="stylesheet" />
   <link type="text/css" href="css/style.css" rel="stylesheet">
-  <link type="text/css" href="css/ProteinSequence.css" rel="stylesheet">
-  <link type="text/css" href="css/tags.css" rel="stylesheet">
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-  <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
   
   <script type="text/javascript" src="../biojs/bio/core.js"></script>
   <script type="text/javascript" src="../biojs/bio/CodonTable.js"></script>
@@ -35,11 +32,6 @@
   <script type="text/javascript" src="js/events.js"></script>
   <script type="text/javascript" src="js/setup.js"></script>
   <script type="text/javascript" src="js/seq_demo.js"></script>
-  <script type="text/javascript" src="js/tags.js"></script>
-  <script type="text/javascript" src="js/protein_properties.js"></script>
-  <!--<script type="text/javascript" src="js/ronn.js"></script>-->
-
-  <style type="text/css" id="styles"></style>
 </head>
 <body>
 
@@ -50,8 +42,6 @@
     <div id="dna"><span></span></div>
     <div id="complement"><span></span></div>
     <div class="marker" id="marker_dna"></div>
-    <div class="marker features" id="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color:rgba(200,125,99,0.12);border-bottom: 3px solid rgba(200,125,99,0.5)" title="GST tag">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<span style="background-color:rgba(223,204,82,0.12);border-bottom: 3px solid rgba(223,204,82,0.5)" title="GST tag">aaaaaaaaaaaaaaaaaa</span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-    <div class="marker features" id="">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<span style="border-bottom: 3px solid #f00" title="GST tag">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<span style="background-color:rgba(223,204,82,0.12);border-bottom: 3px solid rgba(223,204,82,0.5)" title="GST tag">aaaaaaaaaaaaaaaaaa</span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
   </div>
   
   <form autocomplete="off" id="new-sequence" class="panel">
@@ -62,86 +52,17 @@
         <span class="bp">0 bp</span> 
         <span class="aa">(0 aa)</span>
       </div>
-      <!--<select>
-        <option value="1">Frame +1</option>
-        <option value="2">Frame +2</option>
-        <option value="3">Frame +3</option>
-      </select>-->
       <input type="submit" value="Submit" />
     </div>
   </form>
-  
-  <div id="info-panel" class="panel" style="display:none">
-    <div style="width:25%; float:left">
-    <table class="info-table" style="width: 90%">
-      <tr><td>Length</td><td>109 aa</td></tr>
-      <tr><td>M.W</td><td>5.4 kDa</td></tr>
-      <tr><td>Theoretical pI</td><td>5.4</td></tr>
-      <tr><td>Extinction coefficient</td><td>5.4</td></tr>
-    </table>
-    
-    <h3>Amino acid composition</h3>
-    <table class="info-table aa-composition" style="width: 90%">
-      <thead>
-        <tr><th>aa</th><th>#</th><th>%</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    </div>
-    
-    <div style="width:75%; float:left">
-    <div id="seq-tabs">
-    <ul>
-      <li><a href="#seq-with-tag">Full sequence</a></li>
-      <li><a href="#id-seq">AA composition</a></li>
-   </ul>
-
-      <div style="font-family: Courier; font-size: 15px; word-wrap: break-word; line-height: 2" id="seq-with-tag">
-      <span style="background-color:#A01F39;color:#fff;border:1px solid #A01F39;border-width:1px 0">MSPILGYWKIKGLVQPTRLLLEYLEEKYEEHLYERDEGDKWRNKKFELGLEFPNLPYYIDGDVKLTQSMAIIRYIADKHNMLGGCPKERAEISMLEGAVLDIRYGVSRIAYSKDFETLKVDFLSKLPEMLKMFEDRLCHKTYLNGDHVTHPDFMLYDALDVVLYMDPMCLDAFPKLVCFKKRIEAIPQIDKYLKSSKYIAWPLQGWQATFGGGDHPPKS</span><span style="color: #666">SS</span><span style="background-color:#4C6B9E;color:#fff;border:1px solid #4C6B9E;border-width:1px 0">ENLYFQS</span><span style="border-top: 1px solid;border-bottom: 1px solid">MSPILGYWKIKGLVQPTRLLLEYLEEKYEEHLYERDEGDKWRNKKFELGLEFPNLPYYIDGDVKLTQSMAIIRYIADKHNMLGGCPKERAEISMLEGAVLDIRYGVSRIAYSKDFETLKVDFLSKLPEMLKMFEDRLCHKTYLNGDHVTHPDFMLYDALDVVLYMDPMCLDAFPKLVCFKKRIEAIPQIDKYLKSSKYIAWPLQGWQATFGGGDHPPKSDLVPRGSENLYFQGA</span>
-      </div>
-
-      <div style="font-family: Courier; font-size: 15px; word-wrap: break-word; line-height: 2" id="id-seq">
-      MSPILGYWKIKGLVQPTRLLLEYLEEKYEEHLYERDEGDKWRNKKFELGLEFPNLPYYIDGDVKLTQSMAIIRYIADKHNMLGGCPKERAEISMLEGAVLDIRYGVSRIAYSKDFETLKVDFLSKLPEMLKMFEDRLCHKTYLNGDHVTHPDFMLYDALDVVLYMDPMCLDAFPKLVCFKKRIEAIPQIDKYLKSSKYIAWPLQGWQATFGGGDHPPKSSSENLYFQSMSPILGYWKIKGLVQPTRLLLEYLEEKYEEHLYERDEGDKWRNKKFELGLEFPNLPYYIDGDVKLTQSMAIIRYIADKHNMLGGCPKERAEISMLEGAVLDIRYGVSRIAYSKDFETLKVDFLSKLPEMLKMFEDRLCHKTYLNGDHVTHPDFMLYDALDVVLYMDPMCLDAFPKLVCFKKRIEAIPQIDKYLKSSKYIAWPLQGWQATFGGGDHPPKSDLVPRGSENLYFQGA
-      </div>
-      </div>
-    </div>
-  </div>
-  
-  <!--<div id="ronn" class="panel" style="display:none">
-    <div id="ronn-ranges">Disordered residues: </div>
-    <pre></pre>
-    <div id="ronn_dashboard">
-      <div id="ronn_chart"></div>
-      <div id="ronn_controls"></div>
-    </div>
-  </div>-->
 </div>
-
-<div class="info-wrapper">
-  <div id="info">
-    <div style="width: 30%; float:left">
-      <h4 style="margin-top:0; margin-bottom: 10px">This protein:</h4>
-      <table class="info-table" style="width: 90%; margin-bottom: 12px;">
-        <tr><td>Length</td><td>109 aa</td></tr>
-        <tr><td>M.W</td><td>5.4 kDa</td></tr>
-      </table>
-      <button id="btn-more-info" data-icon="ui-icon-extlink">More info..</button>
-    </div>
-    
-    <div style="width: 70%; float:left">
-      <h4 style="margin-top:0; margin-bottom: 10px">Tag</h4>
-      <table id="tags"></table>
-    </div>
-  </div>
-</div>
-
+  
 <div class="primers-wrapper">
   <div id="controls">
     <div class="buttons">
       <button id="btn-add-primer" data-icon="ui-icon-plusthick">Add primer</button>
       <button id="btn-settings" data-icon="ui-icon-gear">Settings..</button>
       <button id="btn-export" data-icon="ui-icon-extlink">Export..</button>
-      <button id="btn-screens" data-icon="ui-icon-transferthick-e-w">Screens</button>
     </div>
     <form autocomplete="off" id="settings">
       <div style="width: 50%; float:left">
@@ -162,7 +83,6 @@
   </div>
   <div id="primers"></div>
 </div>
-
 
 <div id="popup-export">
   <textarea class="export" readonly="readonly"></textarea>

@@ -98,15 +98,6 @@ $(function() {
           .parent()
           .dialog("open");
       break;
-      
-      // #DEBUG: toggle between different screens
-      case 'screens':
-        var next = PD.screens.indexOf('#' + $('.sequences-wrapper > *:visible').get(0).id) + 1;
-            
-        if (next > PD.screens.length - 1) { next = 0; }
-        $(PD.screens.join(',')).hide();
-        $(PD.screens[next]).show();
-      break;
     }
   });
   
