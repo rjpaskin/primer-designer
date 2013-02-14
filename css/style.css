@@ -1,5 +1,10 @@
 body {
 font-family: 'Lucida Grande', 'Helvetica', sans-serif;
+font-size: 0.75em;
+color: #222;
+padding: 0;
+margin: 0;
+max-height: 100%;
 }
 #primers, #controls {
 padding: 10px;
@@ -43,20 +48,6 @@ overflow: auto;
   width: inherit;
   /*font-family: serif;*/
   font-family: 'Lucida Grande', 'Helvetica', sans-serif;
-}
-
-.info-wrapper {
-height: 17%;
-width: 68%;
-position: fixed;
-bottom: 0px;
-left: 0px;
-overflow: auto;
-border-top: 4px solid #ccc;
-}
-
-#info {
-padding: 15px;
 }
 
 .primer {
@@ -153,14 +144,6 @@ background-color: #fff;
 width: 100%;
 font-family: Courier;
 padding: 6px;
-}
-
-body {
-font-size: 0.75em;
-color: #222;
-padding: 0;
-margin: 0;
-max-height: 100%;
 }
 
 #protein span {
