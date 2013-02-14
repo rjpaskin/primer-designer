@@ -1,0 +1,7 @@
+<span class="unselected"><%= obj.slice(0, start) %></span>
+<span>
+ <span class="n-homology"><%= region.substr(0, len) %></span>
+   <%= obj.slice(start + len, end - len) %>
+ <span class="c-homology"><%= region.substr(region.length - len) %></span>
+</span>
+<span class="unselected"><%= obj.substr(end) %></span>

@@ -61,7 +61,7 @@ $(function() {
       
       if (PD.settings.tags[key[0]] != undefined) {
         if (key[1] != undefined) {
-          extra = '<sub>' + key[1] + '</span>';
+          extra = '<sub>' + key[1] + '</sub></span>';
         }
         arr.push('<span class="tag tag-' + key[0].toLowerCase().replace(/ /g, '-') +'">' + key[0] + extra + '</span>');
       }
@@ -69,7 +69,7 @@ $(function() {
         arr.push('<span>' + key[0] + '</span>');
       }
     }
-    $('#tags').append('<tr style="display:none"><td>' + name + '</td><td style="color: #666" class="vector-tag">'
+    $('#tags').append('<tr><td>' + name + '</td><td style="color: #666" class="vector-tag">'
     + attach_protein_tag(name, arr) + '</td><td>'
     + PD.translate_tag(tag).calcMW() + '</td></tr>');
   });

@@ -1,5 +1,5 @@
 $(function() {
-  // AA composition
+  // AA composition - EXAMPLE CODE
   var seq = $('#id-seq').html().split('');
 
   for (var s in seq) {
@@ -12,13 +12,10 @@ $(function() {
   //var hi = $('#id-seq').html().replace(/S/gi, '<span style="color: #fc0">S</span>');
   $('#id-seq').html(seq.join('')).addClass('rasmol');
   
-  $.each(Bio.ProteinSequence.aa, function(name, info) {
-    $('.aa-composition').append('<tr><td class="' + info.sym.toLowerCase() + '">' + info.sym + '</td><td>' 
-    + PD.MySequence.protein.count(name) + '</td><td>' 
-    + (PD.MySequence.protein.count(name)/PD.MySequence.protein.length * 100).toFixed(1) + '%</td></tr>');
-  });
-  $('.aa-composition').addClass('rasmol');
-  
+  $('.aa-composition tbody')
+    .append(PD.tmpl('aa_composition', { protein: PD.MySequence.protein }))
+    .parent()
+    .addClass('rasmol');
   
   $('#seq-tabs').tabs();
 });
