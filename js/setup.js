@@ -1,11 +1,4 @@
-$(function() {
-   // #DEBUG: Quick loading of particular panel from address hash
-   PD.screens = ['#new-sequence', '#sequences', '#info-panel' /*, '#ronn'*/];
-   if (location.hash !== '' && PD.screens.indexOf(location.hash) !== -1) {
-     $(PD.screens.join(',')).hide();
-     $(location.hash).show();
-   }
-      
+$(function() {    
   // Setup sortable primers
   $("#primers").sortable({
     items:     '.primer',
