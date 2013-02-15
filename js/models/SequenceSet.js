@@ -1,5 +1,5 @@
 /** Class SequenceSet **/
-(function() {
+(function(PD) {
   PD.SequenceSet = function(dna, title) {
     this.dna = new Bio.DNASequence(dna);
     
@@ -37,4 +37,4 @@
   
     return output;
   };
-}());
+}(window.PD));

@@ -15,20 +15,11 @@
   <script type="text/javascript" src="../biojs/bio/DNASequence.js"></script>
   <script type="text/javascript" src="../biojs/bio/ProteinSequence.js"></script>
 
-  <script type="text/javascript">
-    var PD = {};
-    PD.tmpl = function(name, data) {
-      if (PD.tmpl.hasOwnProperty(name)) {
-        return PD.tmpl[name].call(null, data);
-      }
-    }
-  </script>
+  <script type="text/javascript" src="js/callbacks.js"></script>
+  <script type="text/javascript" src="js/_templates.js"></script>
   <script type="text/javascript" src="js/settings.js"></script>
   <script type="text/javascript" src="js/models/SequenceSet.js"></script>
-  <script type="text/javascript" src="js/models/PrimerSet.js"></script>
-  
-  <script type="text/javascript" src="js/_templates.js"></script>
-  <script type="text/javascript" src="js/callbacks.js"></script>
+  <script type="text/javascript" src="js/models/PrimerSet.js"></script>  
   <script type="text/javascript" src="js/events.js"></script>
   <script type="text/javascript" src="js/setup.js"></script>
 </head>

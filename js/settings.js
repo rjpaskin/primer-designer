@@ -1,3 +1,4 @@
+(function(PD) {
 PD.settings = PD.settings || {};
 
 PD.settings.homology = {
@@ -21,3 +22,4 @@ PD.settings.homology = {
 
 PD.settings.homology_length = 7; // amino acids
 PD.settings.min_construct_length = (PD.settings.homology_length * 2) - 1;
+})(window.PD);

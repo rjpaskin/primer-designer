@@ -13,7 +13,7 @@ task :tmpl do
   end
   
   File.open('js/_templates.js', 'w') do |file|
-    file.write "(function(){\n#{str.join ''}}());"
+    file.write "(function(PD){\n#{str.join ''}}(window.PD));"
     
     puts "#{str.count} templates compiled"
   end

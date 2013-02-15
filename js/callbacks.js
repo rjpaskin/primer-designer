@@ -1,4 +1,11 @@
 (function() {
+var PD = window.PD = {};
+
+PD.tmpl = function(name, data) {
+  if (PD.tmpl.hasOwnProperty(name)) {
+    return PD.tmpl[name].call(null, data);
+  }
+}
 
 PD.applySlider = function(ele) {
   var primer = $(ele),

@@ -1,5 +1,5 @@
 /** Class PrimerSet **/
-(function() {
+(function(PD) {
   PD.PrimerSet = function(start, end, family) {
     this.setStart(start);
     this.setEnd(end);
@@ -46,4 +46,4 @@
     this.tags = PD.settings.homology[this.family];
     return this;
   }
-}());
+}(window.PD));
