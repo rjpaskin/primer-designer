@@ -45,8 +45,14 @@
   </div>
   
   <form autocomplete="off" id="new-sequence" class="panel">
-    <p><label>Title:</label>&nbsp;<input type="text" autocomplete="off" class="title" style="font-size: 12pt; width: 100%"/></p>
-    <p><label>Sequence:</label><textarea rows="15"></textarea></p>
+    <p>
+      <label>Title:</label>
+      <input type="text" autocomplete="off" class="title"/>
+    </p>
+    <p>
+      <label>Sequence:</label>
+      <textarea rows="15"></textarea>
+    </p>
     <div>
       <div id="sequence-info">
         <span class="bp">0 bp</span> 
@@ -65,20 +71,19 @@
       <button id="btn-export" data-icon="ui-icon-extlink">Export..</button>
     </div>
     <form autocomplete="off" id="settings">
-      <div style="width: 50%; float:left">
-        <h4 style="margin-top:0; margin-bottom: 10px">Primers</h4>
+      <div>
+        <h4>Primers</h4>
         <label>Name:</label><br/>
-        <input type="text" id="default-name" style="font-weight:bold;" value="Primer_"/><br/>
+        <input type="text" id="default-name" value="Primer_"/><br/>
       </div>
     
-      <div class="display-settings" style="width: 50%; float: left">
-        <h4 style="margin-top:0; margin-bottom: 10px">Display</h4>
+      <div class="display-settings">
+        <h4>Display</h4>
         <label for="checkbox-protein"><input type="checkbox" checked="checked" id="checkbox-protein"> Protein</label><br>
         <label for="checkbox-dna"><input type="checkbox" checked="checked" id="checkbox-dna"> DNA</label><br>
         <label for="checkbox-complement"><input type="checkbox" checked="checked" id="checkbox-complement"> Complement</label><br>
         <label for="checkbox-marker_dna"><input type="checkbox" checked="checked" id="checkbox-marker_dna"> DNA ruler</label><br>
       </div>
-      <br style="clear:both"/>
     </form>
   </div>
   <div id="primers"></div>

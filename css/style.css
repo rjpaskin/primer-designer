@@ -35,6 +35,11 @@ left: 0px;
 overflow: auto;
 }
 
+.title {
+font-size: 12pt;
+width: 100%;
+}
+
 .sequences-wrapper #seq-title {
   background-color: #eee;
   font-size: 12pt;
@@ -237,4 +242,19 @@ padding: 10px;
 border: 1px solid #ccc;
 background-color: #eee;
 display: none;
+overflow: auto; /* gives settings box correct height */
+}
+
+#settings h4 {
+margin-top:0;
+margin-bottom: 10px;
+}
+
+#settings > div {
+width: 50%;
+float: left;
+}
+
+#default-name {
+font-weight: bold;
 }
